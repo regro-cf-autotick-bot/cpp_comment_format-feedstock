@@ -1,6 +1,6 @@
 {% set name = "cpp_comment_format" %}
 {% set org = "tdegeus" %}
-{% set version = "0.1.3" %}
+{% set version = "0.2.0" %}
 
 package:
   name: {{ name|lower }}
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://github.com/{{ org }}/{{ name }}/archive/v{{ version }}.tar.gz
-  sha256: 969e181cd0320f8d276b8e1fed1d2d431addf270f468d5d767ebd9d547dc0115
+  sha256: 635d9e83182a2901d256cfe1bd0e134a684533afbf6f4787208bc0b24ee3405e
 
 build:
   number: 0
