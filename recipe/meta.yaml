@@ -1,14 +1,12 @@
-{% set name = "cpp_comment_format" %}
-{% set org = "tdegeus" %}
-{% set version = "0.2.0" %}
+{% set version = "0.2.1" %}
 
 package:
-  name: {{ name|lower }}
+  name: cpp_comment_format
   version: {{ version }}
 
 source:
-  url: https://github.com/{{ org }}/{{ name }}/archive/v{{ version }}.tar.gz
-  sha256: 635d9e83182a2901d256cfe1bd0e134a684533afbf6f4787208bc0b24ee3405e
+  url: https://github.com/tdegeus/cpp_comment_format/archive/v{{ version }}.tar.gz
+  sha256: 7658ae0d669c4c1f4f6dcbe1011925d3c85dadfc7e13afc35f2c1b3e130f8a01
 
 build:
   number: 0
@@ -16,35 +14,37 @@ build:
   script_env: SETUPTOOLS_SCM_PRETEND_VERSION={{ version }}
   script: {{ PYTHON }} -m pip install . -vv
   entry_points:
-    - {{ name }} = {{ name }}:_cli
+    - cpp_comment_format = cpp_comment_format:_cli
 
 requirements:
   host:
     - pip
-    - python >=3
-    - setuptools_scm
+    - python >=3.6
+    - setuptools >=45
+    - setuptools_scm >=6.2
   run:
-    - python >=3
+    - python >=3.6
+    - pyyaml
 
 test:
-  requires:
-    - pip
   imports:
-    - {{ name }}
+    - cpp_comment_format
   commands:
     - pip check
-    - python -c "import {{ name }}; assert {{ name }}.version == '{{ version }}'"
-    - {{ name }} --version | grep {{ version }}
+    - python -c "import cpp_comment_format; assert cpp_comment_format.version == '{{ version }}'"
+    - cpp_comment_format --version | grep {{ version }}
+  requires:
+    - pip
 
 about:
-  home: https://github.com/{{ org }}/{{ name }}
+  home: https://github.com/tdegeus/cpp_comment_format
   license: MIT
   license_family: MIT
   license_file: LICENSE
   summary: Format C++ comment blocks.
   description: Format C++ comment blocks.
-  doc_url: https://{{ name }}.readthedocs.io/
-  dev_url: https://github.com/{{ org }}/{{ name }}
+  doc_url: https://cpp_comment_format.readthedocs.io/
+  dev_url: https://github.com/tdegeus/cpp_comment_format
 
 extra:
   recipe-maintainers:
