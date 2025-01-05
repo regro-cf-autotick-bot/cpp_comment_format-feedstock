@@ -9,7 +9,7 @@ source:
   sha256: 7658ae0d669c4c1f4f6dcbe1011925d3c85dadfc7e13afc35f2c1b3e130f8a01
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script_env: SETUPTOOLS_SCM_PRETEND_VERSION={{ version }}
   script: {{ PYTHON }} -m pip install . -vv
@@ -19,11 +19,11 @@ build:
 requirements:
   host:
     - pip
-    - python >=3.6
+    - python {{ python_min }}
     - setuptools >=45
     - setuptools_scm >=6.2
   run:
-    - python >=3.6
+    - python >={{ python_min }}
     - pyyaml
 
 test:
@@ -35,6 +35,7 @@ test:
     - cpp_comment_format --version | grep {{ version }}
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/tdegeus/cpp_comment_format
